@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', path='style.css') }}">
+    <title>Negotiation Chat</title>
+</head>
+<body>
+    <h1>Negotiation Chat</h1>
+    <div id="chat">
+        {% for message in messages %}
+            <p>{{ message }}</p>
+        {% endfor %}
+        {% if completed %}
+            <p><strong>Negotiation completed!</strong></p>
+        {% endif %}
+    </div>
+    <form action="/negotiate" method="post">
+        <label for="offer_0">Offer for Laptop:</label>
+        <input type="number" step="0.01" name="offer_0" required>
+        <label for="offer_1">Offer for Warranty:</label>
+        <input type="number" step="0.01" name="offer_1" required>
+        <button type="submit">Submit Offer</button>
+    </form>
+
+    <div>
+        <form action="/accept" method="post">
+            <button type="submit">Accept</button>
+        </form>
+        <form action="/decline" method="post">
+            <button type="submit">Decline</button>
+        </form>
+    </div>
+</body>
+</html>
